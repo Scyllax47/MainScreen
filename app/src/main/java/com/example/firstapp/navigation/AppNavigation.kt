@@ -7,11 +7,13 @@ import androidx.navigation.compose.rememberNavController
 import com.example.firstapp.screens.LoginScreen
 import com.example.firstapp.screens.RegisterScreen
 import com.example.firstapp.screens.WelcomeScreen
+import com.example.firstapp.screens.MainScreen
 
 sealed class Screen(val route: String) {
     object Welcome : Screen("welcome")
     object Login : Screen("login")
     object Register : Screen("register")
+    object Main : Screen("main")
 }
 
 @Composable
@@ -21,7 +23,7 @@ fun AppNavigation() {
 
     NavHost(
         navController = navController,
-        startDestination = Screen.Welcome.route
+        startDestination = Screen.Main.route
     ) {
 
         composable(Screen.Welcome.route) {
@@ -34,6 +36,10 @@ fun AppNavigation() {
 
         composable(Screen.Register.route) {
             RegisterScreen(navController)
+        }
+
+        composable(Screen.Main.route){
+            MainScreen()
         }
     }
 }
